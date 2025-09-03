@@ -369,7 +369,45 @@ function SmartTopos(targetCFrame)
     return "Reset"
 end
 
---// StopTween
+--Fly
+local flying = false
+local BodyGyro, BodyVelocity
+
+function Fly(speed)
+    if flying then return end -- tránh gọi nhiều lần gây lỗi
+    flying = true
+
+    local hrp = HRP()
+    if not hrp then return end
+
+    BodyGyro = Instance.new("BodyGyro")
+    BodyGyro.P = 9e4
+    BodyGyro.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+    BodyGyro.CFrame = hrp.CFrame
+    BodyGyro.Parent = hrp
+
+    BodyVelocity = Instance.new("BodyVelocity")
+    BodyVelocity.Velocity = Vector3.new(0,0,0)
+    BodyVelocity.MaxForce = Vector3.new(9e9, 9e9, 9e9)
+    BodyVelocity.Parent = hrp
+
+    task.spawn(function()
+        while flying and task.wait() do
+            if not hrp then break end
+            BodyGyro.CFrame = workspace.CurrentCamera.CFrame
+            BodyVelocity.Velocity = workspace.CurrentCamera.CFrame.LookVector * (speed or 50)
+        end
+    end)
+end
+
+-- Tắt bay khi stop tween
+function StopFly()
+    flying = false
+    if BodyGyro then BodyGyro:Destroy() BodyGyro = nil end
+    if BodyVelocity then BodyVelocity:Destroy() BodyVelocity = nil end
+end
+
+-- Tích hợp vào StopTween
 function StopTween()
 	pcall(function()
 		getgenv().StopTween = true
@@ -382,6 +420,7 @@ function StopTween()
 			hrp.CFrame = cf
 			hrp.Anchored = false
 		end
+		StopFly() -- tắt fly khi dừng tween
 		getgenv().StopTween, getgenv().Clip = false, false
 	end)
 end
@@ -496,6 +535,7 @@ function AutoFarmLoop()
         pcall(function()
             CheckQuest()
             local questTitle = GetQuestTitle()
+
             if not questTitle or not string.find(questTitle, NameMon or "") then
                 pcall(function() Rep.Remotes.CommF_:InvokeServer("AbandonQuest") end)
                 TakeQuest()
@@ -505,14 +545,25 @@ function AutoFarmLoop()
                     if mob and mob.Name == Mon then
                         local humanoid = mob:FindFirstChildOfClass("Humanoid")
                         local hrp = mob:FindFirstChild("HumanoidRootPart")
+
                         if humanoid and hrp and humanoid.Health > 0 then
-                            -- Move đến mob bằng SmartTopos
-                            SmartTopos(hrp.CFrame * CFrame.new(0, 20, 5))
+                            -- Move tới mob (nhưng giữ trên đầu)
+                            SmartTopos(hrp.CFrame * CFrame.new(0, 30, 0))
+
+                            -- bật fly (nếu chưa có)
+                            if not flying then Fly(60) end
 
                             repeat
                                 task.wait(0.08)
+
+                                -- luôn bay trên đầu mob
+                                local myHRP = HRP()
+                                if myHRP then
+                                    myHRP.CFrame = hrp.CFrame * CFrame.new(0, 30, 0)
+                                end
+
                                 if getgenv().AutoHakiEnabled then AutoHaki() end
-                                EquipWeapon(getgenv().SelectWeapon)
+      EquipWeapon(getgenv().SelectWeapon)
 
                                 if getgenv().FastAttackEnabled then
                                     if not FastAttackThread then
@@ -522,13 +573,14 @@ function AutoFarmLoop()
                                     AttackNoCoolDown()
                                 end
 
-                                -- magnet/collider
+                                -- mob đứng im
                                 pcall(function()
                                     hrp.CanCollide = false
                                     if mob:FindFirstChild("Head") then
                                         mob.Head.CanCollide = false
                                     end
                                     humanoid.WalkSpeed = 0
+                                    humanoid.JumpPower = 0
                                 end)
                             until not getgenv().AutoFarmEnabled or humanoid.Health <= 0 or not mob.Parent
                             task.wait(0.2)
@@ -538,6 +590,7 @@ function AutoFarmLoop()
             end
         end)
     end
+    StopFly() -- khi thoát loop thì tắt bay
 end
 
 --// Button StopTween
