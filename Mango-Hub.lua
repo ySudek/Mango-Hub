@@ -48,9 +48,12 @@ Main:AddToggle({
 	Callback = function(Value)
 		getgenv().AutoFarmEnabled = Value
 		if Value then
+			Fly(60) -- bật fly khi auto farm
 			task.spawn(function()
 				if type(AutoFarmLoop) == "function" then AutoFarmLoop() end
 			end)
+		else
+			StopFly() -- tắt fly khi tắt auto farm
 		end
 	end    
 })
@@ -562,8 +565,8 @@ function AutoFarmLoop()
                                     myHRP.CFrame = hrp.CFrame * CFrame.new(0, 30, 0)
                                 end
 
-                                if getgenv().AutoHakiEnabled then AutoHaki() end
-      EquipWeapon(getgenv().SelectWeapon)
+  if getgenv().AutoHakiEnabled then AutoHaki() end
+                                EquipWeapon(getgenv().SelectWeapon)
 
                                 if getgenv().FastAttackEnabled then
                                     if not FastAttackThread then
