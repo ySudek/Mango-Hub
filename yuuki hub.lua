@@ -43,7 +43,7 @@ getgenv().Config = {
         }, -- Auto Equiped In Brainrot Zone
         ["Auto Collect Money"] = {
             ["Enable"] = true, -- Auto Claim Money From Brainrot
-            ["Delays"] = 5 -- -- [ Seconds ]
+            ["Delays"] = 60 -- -- [ Seconds ]
         },
         ["Auto Unlock Rows"] = {
             ["Enable"] = true,
