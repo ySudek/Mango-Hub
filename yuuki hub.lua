@@ -1,12 +1,11 @@
---- Best Farm Kaitun PVB (Wibu)
 getgenv().Config = {
-    ["Key"] = "SzfBsrwKVBOxVYSnwoEcdeSKExzSDgaf", -- Get Key In Discord Yuuki Hub - https://ads.luarmor.net/get_key?for=-eAuiyQiPmDKX
+    ["Key"] = "SzfBsrwKVBOxVYSnwoEcdeSKExzSDgaf",
     ["Redeem Code"] = true,
     ["Skip Tutorial"] = true, -- After Rejoin You Must Need Waiting For Valid You (5mins-10mins)
     ["Webhook"] = {
         ["Enable"] = true,
-        ["Url"] = "https://discord.com/api/webhooks/1422761452791402516/gtl4AJdA5MfCkpK3vqwF6gxI1qEzJrSiNScH4FDFqzjPUDqADXIjcH8Gc7XuIY1WbS9s", -- Webhook URL
-        ["Mentions ID"] = "", -- Discord ID
+        ["Url"] = "l",
+        ["Mentions ID"] = "https://discord.com/api/webhooks/1422761452791402516/gtl4AJdA5MfCkpK3vqwF6gxI1qEzJrSiNScH4FDFqzjPUDqADXIjcH8Gc7XuIY1WbS9s", -- Discord ID
         ["Ping Mentions when"] = {
             ["Rarity"] = {
                 ["Rare"] = false,
@@ -19,8 +18,8 @@ getgenv().Config = {
             },
             ["Mutation"] = {
                 ["Normal"] = false,
-                ["Diamond"] = false,
-                ["Neon"] = false,
+                ["Diamond"] = true,
+                ["Neon"] = true,
                 ["Gold"] = true,
                 ["Rainbow"] = true,
                 ["Galactic"] = true,
@@ -34,26 +33,31 @@ getgenv().Config = {
             ["Delays"] = 1, -- [ Hours ] 0.5 = 30mins
         },
         ["FPS Boost"] = false,
-        ["UI"] = true,
+        ["UI"] = false,
     },
     ["Auto Play"] = {
-        ["Auto Plant Seeds"] = {
+        ["Auto Equiped Best Brainrot"] = {
             ["Enable"] = true,
-            ["Auto Equiped Best Brainrot"] = {
-                ["Enable"] = true,
-                ["Delays"] = 60, -- [ Seconds ]
-            }, -- Auto Equiped In Brainrot Zone
+            ["Auto Buy More Slot Brainrot Zone"] = true,
+            ["Delays"] = 60, -- [ Seconds ]
+        }, -- Auto Equiped In Brainrot Zone
+        ["Auto Collect Money"] = {
+            ["Enable"] = true, -- Auto Claim Money From Brainrot
+            ["Delays"] = 5 -- -- [ Seconds ]
+        },
+        ["Auto Unlock Rows"] = {
+            ["Enable"] = true,
+            ["Max Unlock"] = 7 -- 7 Rows, Priority Lowest Price To Unlock
+        },
+        ["Auto Rebirth"] = {
+            ["Enable"] = true,
+            ["Max Rebirth Reach"] = 1 -- You may select the rebirth of your choice [ Max 2 ]
+        },
+        ["Auto Plant"] = {
+            ["Enable"] = true, -- Enable Plant
             ["Auto Plant Best Seed"] = {
                 ["Enable"] = true,
-                ["Only Plant When Event"] = {
-                    ["Enable"] = true, -- Only Plant Seed When Event
-                    ["Event"] = {
-                        ["Frozen"] = true,
-                        ["Rainbow"] = true,
-                        ["Golden"] = true,
-                        ["Galactic"] = true,
-                    }
-                },
+                ["Only Plant When Event"] = false, -- Only Plant Seed When Event,
                 ["New Seed Plant"] = 1, -- Plant New Seed [ Priority High Rarity ]
                 ["Auto Use Water Bucket"] = true, -- Only Work In Private Server
                 ["Limit Countdowns Seeds"] = {
@@ -62,26 +66,26 @@ getgenv().Config = {
                 },
                 ["Delays"] = 60, -- [ Seconds ]
             },-- Clear all plants and replant the best seeds/plants
-            ["Auto Buy More Slot Brainrot Zone"] = true,
-            ["Auto Collect Money"] = {
-                ["Enable"] = true, -- Auto Claim Money From Brainrot
-                ["Delays"] = 30 -- -- [ Seconds ]
-            },
-        },
-        ["Auto Rebirth"] = {
-            ["Enable"] = false,
-            ["Max Rebirth Reach"] = 4 -- You may select the rebirth of your choice
         },
         ["Auto Sell"] = {
             ["Sell If Max"] = true, -- Only Sell After Full Inventory
             ["Brainrot"] = {
                 ["Enable"] = true,
+                ["Dont Sell Weight Above"] = 99.9, -- KG
+                ["Ignore Sell"] = {
+                    ["Tralalero Tralala"] = true, -- Rebirth 1
+                    ["Bombini Gussini"] = true, -- Rebirth 1
+                    ["Vacca Saturno Saturnita"] = true, -- Rebirth 2,3,4
+                    ["Los Tralaleritos"] = true, -- Rebirth 2,3,4
+                    ["Dragon Cannelloni"] = true -- Limited
+                },
                 ["Select Brainrot Rarity"] = {
                     ["Rare"] = true,
                     ["Epic"] = true,
                     ["Legendary"] = true,
-                    ["Mythic"] = true,
-                    ["Godly"] = true,
+                    ["Mythic"] = false,
+                    ["Godly"] = false,
+                    ["Limited"] = false,
                     ["Serect"] = false
                 },
                 ["Select Brainrot Mutation"] = {
@@ -90,18 +94,24 @@ getgenv().Config = {
                     ["Neon"] = true,
                     ["Gold"] = true,
                     ["Rainbow"] = true,
-                    ["Galactic"] = false,
-                    ["Frozen"] = false
+                    ["Galactic"] = true,
+                    ["Frozen"] = true
                 }
             },
             ["Plants"] = {
                 ["Enable"] = true,
+                ["Dont Sell Weight Above"] = 99.9, -- KG
+                ["Ignore Sell"] = {
+                    ["Tomatrio"] = true,
+                    ["Shroombino"] = true,
+                },
                 ["Select Plants Rarity"] = {
                     ["Rare"] = true,
                     ["Epic"] = true,
-                    ["Legendary"] = true,
+                    ["Legendary"] = false,
                     ["Mythic"] = false,
                     ["Godly"] = false,
+                    ["Limited"] = false,
                     ["Serect"] = false
                 },
                  ["Select Plants Mutation"] = {
@@ -115,16 +125,12 @@ getgenv().Config = {
                 }
             }
         },
-        ["Auto Unlock Rows"] = {
-            ["Enable"] = true,
-            ["Max Unlock"] = 7 -- 7 Rows, Priority Lowest Price To Unlock
-        },
     },
     ["Auto Buy Gears"] = {
         ["Enable"] = true,
         ["Select Gear"] = {
             ["Water Bucket"] = true,
-            ["Frost Grenade"] = true,
+            ["Frost Grenade"] = false,
             ["Banana Gun"] = false,
             ["Frost Blower"] = false,
             ["Carrot Launcher"] = false,
@@ -133,15 +139,15 @@ getgenv().Config = {
     ["Auto Buy Seeds"] = {
         ["Enable"] = true,
         ["Select Seeds"] = {
-            ["Cactus Seed"] = false,
-            ["Strawberry Seed"] = false,
-            ["Pumpkin Seed"] = false,
-            ["Sunflower Seed"] = false,
-            ["Dragon Fruit Seed"] = false,
-            ["Eggplant Seed"] = false,
+            ["Cactus Seed"] = true,
+            ["Strawberry Seed"] = true,
+            ["Pumpkin Seed"] = true,
+            ["Sunflower Seed"] = true,
+            ["Dragon Fruit Seed"] = true,
+            ["Eggplant Seed"] = true,
             ["Watermelon Seed"] = true,
-            ["Grape Seed"] = true,
             ["Cocotank Seed"] = true,
+            ["Grape Seed"] = true,
             ["Carnivorous Plant Seed"] = true,
             ["Mr Carrot Seed"] = true,
             ["Tomatrio Seed"] = true,
