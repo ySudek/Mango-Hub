@@ -51,7 +51,7 @@ getgenv().Config = {
         },
         ["Auto Rebirth"] = {
             ["Enable"] = true,
-            ["Max Rebirth Reach"] = 1 -- You may select the rebirth of your choice [ Max 2 ]
+            ["Max Rebirth Reach"] = 2 -- You may select the rebirth of your choice [ Max 2 ]
         },
         ["Auto Plant"] = {
             ["Enable"] = true, -- Enable Plant
