@@ -23,6 +23,28 @@ getgenv().Config = {
         ["Pet"] = {
             ["Celularcini Viciosini"] = true,
             ["Dragon Cannelloni"] = true,
+            ["Los Mobilis"] = true,
+            ["Los Tralaleritos"] = true,
+            ["Celularcini Viciosini"] = true,
+            ["Karkerkar Kurkur"] = true,
+            ["Agarrini la Palini"] = true,
+            ["Dragon Cannelloni"] = true,
+            ["Los Nooo My Hotspotsitos"] = true,
+            ["Fragola La La La"] = true,
+            ["Mariachi Corazoni"] = true,
+            ["Chicleteira Bicicleteira"] = true,
+            ["Tacorita Bicicleta"] = true,
+            ["Extinct Tralalero"] = true,
+            ["La Vacca Saturno Saturnita"] = true,
+            ["Strawberry Elephant"] = true,
+            ["Graipuss Medussi"] = true,
+            ["Los Hotspotsitos"] = true,
+            ["Los Combinasionas"] = true,
+            ["Las Vaquitas Saturnitas"] = true,
+            ["Nuclearo Dinossauro"] = true,
+            ["Torrtuginni Dragonfrutini"] = true,
+            ["Garama and Madundung"] = true,
+            ["La Grande Combinasion"] = true,
           
         }
     }
